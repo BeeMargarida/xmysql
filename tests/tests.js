@@ -1682,7 +1682,7 @@ describe('xmysql : tests', function () {
 
     //post to an url with data
     agent.get(apiPrefix + 'xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)')     //enter url
-      .expect(400)//200 for success 4xx for failure
+      .expect(200)//200 for success 4xx for failure
       .end(function (err, res) {
 
         // Handle /api/v error
@@ -1690,6 +1690,7 @@ describe('xmysql : tests', function () {
           return done(err);
         }
 
+        Object.keys(res.body[0]).length.should.be.equals(12)
         return done();
 
       });
@@ -1716,24 +1717,6 @@ describe('xmysql : tests', function () {
 
       });
   });
-
-  it('GET ' + apiPrefix + 'xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)&_fields=pl_productline,pr.productName should PASS', function (done) {
-
-    //post to an url with data
-    agent.get(apiPrefix + 'xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)&_fields=pl_productline,pr.productName')     //enter url
-      .expect(400)//200 for success 4xx for failure
-      .end(function (err, res) {
-
-        // Handle /api/v error
-        if (err) {
-          return done(err);
-        }
-
-        return done();
-
-      });
-  });
-
 
   it('GET ' + apiPrefix + 'xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)&_fields=pl.productline,pr.productName&_size=2 should PASS', function (done) {
 

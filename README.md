@@ -734,7 +734,7 @@ Sql join query:
 
 ```sql
 
-SELECT pl.field1, pr.field2
+SELECT *
 FROM productlines as pl
     JOIN products as pr
         ON pl.productline = pr.productline
@@ -743,14 +743,14 @@ FROM productlines as pl
 
 Equivalent xjoin query API:
 ```
-/api/xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)&_fields=pl.field1,pr.field2
+/api/xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)
 ```
 
 #### Multiple tables join
 
 Sql join query:
 ```sql
-SELECT pl.field1, pr.field2, ord.field3
+SELECT *
 FROM productlines as pl
     JOIN products as pr
         ON pl.productline = pr.productline
@@ -761,7 +761,7 @@ FROM productlines as pl
 Equivalent xjoin query API:
 
 ```
-/api/xjoin?_join=pl.productlines,_j,pr.products,_j,ord.orderDetails&_on1=(pl.productline,eq,pr.productline)&_on2=(pr.productcode,eq,ord.productcode)&_fields=&_fields=pl.field1,pr.field2,ord.field3
+/api/xjoin?_join=pl.productlines,_j,pr.products,_j,ord.orderDetails&_on1=(pl.productline,eq,pr.productline)&_on2=(pr.productcode,eq,ord.productcode)
 
 ```
 
@@ -781,16 +781,6 @@ Example to use : _fields, _where, _p, _size in query params
 ```
 /api/xjoin?_join=pl.productlines,_j,pr.products&_on1=(pl.productline,eq,pr.productline)&_fields=pl.productline,pr.productName&_size=2&_where=(productName,like,1972~)
 ```
-
-Response:
-
-```
-[{"pl_productline":"Classic Cars","pr_productName":"1972 Alfa Romeo GTA"}]
-```
-
-Please note : 
-Xjoin response has aliases for fields like below aliasTableName + '_' + columnName.   
-eg: pl.productline in _fields query params - returns as pl_productline in response. 
 
 ## Run dynamic queries
 [:arrow_heading_up:](#api-overview)
