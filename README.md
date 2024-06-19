@@ -1,19 +1,11 @@
 ![npm version](https://img.shields.io/node/v/xmysql.svg)
+[![Build Status](https://travis-ci.org/o1lab/xmysql.svg?branch=master)](https://travis-ci.org/o1lab/xmysql)
+[![GitHub stars](https://img.shields.io/github/stars/o1lab/xmysql.svg?style=plastic)](https://github.com/o1lab/xmysql/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/o1lab/xmysql/master/LICENSE)
 
-<h1 align="center" style="border-bottom: none">
-    <b>
-        <a href="https://www.github.com/nocodb/nocodb">Xmysql is now NocoDB </a><br>
-    </b>
-    ✨ The Open Source Airtable Alternative ✨ <br>
+# Xmysql : One command to generate REST APIs for any MySql database
 
-</h1>
-
-https://github.com/nocodb/nocodb
-
-## Xmysql : One command to generate REST APIs for any MySql database
-
-## Why this ?
+# Why this ?
 <p align="center">
   <img src="./assets/rick-and-morty.gif" alt="xmysql gif"/>
 </p>
@@ -23,7 +15,7 @@ frameworks such as rails, django, laravel etc is a small adventure that one like
 
 Hence this.
 
-## Setup and Usage
+# Setup and Usage
 
 xmysql requires node >= 7.6.0
 
@@ -45,11 +37,11 @@ Happy hackery!
 <!-- Place this tag where you want the button to render. -->
 
 
-## Example : Generate REST APIs for [Magento](http://www.magereverse.com/index/magento-sql-structure/version/1-7-0-2)
+# Example : Generate REST APIs for [Magento](http://www.magereverse.com/index/magento-sql-structure/version/1-7-0-2)
 
 Powered by popular node packages : ([express](https://github.com/expressjs/express), [mysql](https://github.com/mysqljs/mysql)) => { [xmysql](https://github.com/o1lab/xmysql) }
 <p align="center">
-  <img src="./assets/log.gif" alt="xmysql gif" width="750"/>
+  <img src="./assets/log.gif" alt="xmysql gif"  height="400" width="750"/>
 </p>
 
  
@@ -71,7 +63,7 @@ Powered by popular node packages : ([express](https://github.com/expressjs/expre
 
 
 
-## Features
+# Features
 * Generates API for **ANY** MySql database :fire::fire:
 * Serves APIs irrespective of naming conventions of primary keys, foreign keys, tables etc :fire::fire:
 * Support for composite primary keys :fire::fire:
@@ -163,7 +155,7 @@ eg: blogs is parent table and comments is child table. API invocation will resul
 ```
 /api/payments/103___JM555205
 ```
-*___* : If there are multiple primary keys - separate them by three underscores as shown
+*___* : If there are multiple primary keys - seperate them by three underscores as shown
 
 ## Pagination
 
@@ -769,7 +761,7 @@ FROM productlines as pl
 Equivalent xjoin query API:
 
 ```
-/api/xjoin?_join=pl.productlines,_j,pr.products,_j,ord.orderDetails&_on1=(pl.productline,eq,pr.productline)&_on2=(pr.productcode,eq,ord.productcode)&_fields=pl.field1,pr.field2,ord.field3
+/api/xjoin?_join=pl.productlines,_j,pr.products,_j,ord.orderDetails&_on1=(pl.productline,eq,pr.productline)&_on2=(pr.productcode,eq,ord.productcode)&_fields=&_fields=pl.field1,pr.field2,ord.field3
 
 ```
 
@@ -943,7 +935,7 @@ http://localhost:3000/_version
     -u, --user <n>           Username of database -> root by default
     -p, --password <n>       Password of database -> empty by default
     -d, --database <n>       database schema name
-    -r, --ipAddress <n>      IP interface of your server / localhost by default    
+    -r, --ipAddress <n>      IP interface of your server / locahost by default    
     -n, --portNumber <n>     Port number for app -> 3000 by default
     -o, --port <n>           Port number of mysql -> 3306 by default
     -a, --apiPrefix <n>      Api url prefix -> /api/ by default
@@ -1073,7 +1065,16 @@ When you start your nginx proxy in a docker container too, use as `proxy_pass` t
 
 # Tests : setup on local machine
 [:arrow_heading_up:](#api-overview)
+
+Login to mysql shell
+
 ```
-docker-compose run test
+mysql> create database classicmodels
+mysql> use classicmodels
+mysql> source path_to/xmysql/tests/sample.sql
 ```
-* Requires `docker-compose` to be installed on your machine.
+
+```
+$ mocha tests/*.js --exit
+```
+
